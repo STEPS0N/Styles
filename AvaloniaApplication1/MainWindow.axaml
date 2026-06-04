@@ -1,0 +1,282 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="2000"
+        x:Class="AvaloniaApplication1.MainWindow">
+
+    <Window.Styles>
+
+        <Style Selector="Button.smooth-btn">
+            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="25,12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Name="btnBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        
+                        <ContentPresenter Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Background="Transparent"
+                                          Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.smooth-btn /template/ Border#btnBorder">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.3"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.smooth-btn:pointerover /template/ Border#btnBorder">
+            <Setter Property="Background" Value="#1084E0"/>
+        </Style>
+
+        <Style Selector="Button.smooth-btn:pressed /template/ Border#btnBorder">
+            <Setter Property="Background" Value="#005A9E"/>
+        </Style>
+        
+        <Style Selector="TextBlock.section-title">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#636E72"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="BoxShadow" Value="0 2 8 0 #00000015"/>
+        </Style>
+
+        <Style Selector="TextBox.styled-input">
+            <Setter Property="BorderBrush" Value="#DFE6E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="TextBox.styled-input:focus">
+            <Setter Property="BorderBrush" Value="#0078D7"/>
+        </Style>
+
+        <Style Selector="ComboBox.styled-combo">
+            <Setter Property="BorderBrush" Value="#DFE6E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style Selector="Slider.styled-slider">
+            <Setter Property="Foreground" Value="#0078D7"/>
+            <Setter Property="Background" Value="#DFE6E9"/>
+            <Setter Property="Height" Value="6"/>
+        </Style>
+
+        <Style Selector="ProgressBar.styled-progress">
+            <Setter Property="Foreground" Value="#00B894"/>
+            <Setter Property="Background" Value="#DFE6E9"/>
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+
+        <Style Selector="Expander.styled-expander">
+            <Setter Property="BorderBrush" Value="#DFE6E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="15"/>
+        </Style>
+
+    </Window.Styles>
+
+    <ScrollViewer Background="#F4F6F9">
+        <StackPanel Margin="40" Spacing="0">
+            
+            <TextBlock Text="Коллекция элементов Avalonia UI"
+                       FontSize="28" FontWeight="Bold" Foreground="#2D3436"
+                       HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="1. TextBox (Поле ввода)"/>
+                    <StackPanel Spacing="12">
+                        <TextBox Classes="styled-input" Watermark="Обычное поле ввода"/>
+                        <TextBox Classes="styled-input" Watermark="Поле с иконкой" Text="Привет, мир!"/>
+                        <TextBox Classes="styled-input" Watermark="Только для чтения" IsReadOnly="True" Text="Это нельзя изменить"/>
+                        <TextBox Classes="styled-input" Watermark="Многострочное поле" AcceptsReturn="True" Height="80" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="2. CheckBox и RadioButton"/>
+                    <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <CheckBox Content="Согласен с условиями" IsChecked="True"/>
+                            <CheckBox Content="Подписаться на рассылку"/>
+                            <CheckBox Content="Неопределенное" IsChecked="{x:Null}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <RadioButton Content="Вариант 1" GroupName="options" IsChecked="True"/>
+                            <RadioButton Content="Вариант 2" GroupName="options"/>
+                            <RadioButton Content="Вариант 3" GroupName="options"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="3. ComboBox (Выпадающий список)"/>
+                    <StackPanel Spacing="12">
+                        <ComboBox Classes="styled-combo" PlaceholderText="Выберите город">
+                            <ComboBoxItem Content="Москва"/>
+                            <ComboBoxItem Content="Санкт-Петербург"/>
+                            <ComboBoxItem Content="Новосибирск"/>
+                            <ComboBoxItem Content="Екатеринбург"/>
+                        </ComboBox>
+                        <ComboBox Classes="styled-combo" SelectedIndex="1">
+                            <ComboBoxItem Content="Низкий приоритет"/>
+                            <ComboBoxItem Content="Средний приоритет"/>
+                            <ComboBoxItem Content="Высокий приоритет"/>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="20">
+                    <TextBlock Classes="section-title" Text="4. Slider и ProgressBar"/>
+                    <StackPanel Spacing="20">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Прогресс загрузки: 65%" FontSize="13"/>
+                            <ProgressBar Classes="styled-progress" Value="65" Minimum="0" Maximum="100"/>
+                        </StackPanel>
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Неопределенный прогресс" FontSize="13"/>
+                            <ProgressBar Classes="styled-progress" IsIndeterminate="True"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="5. NumericUpDown и DatePicker"/>
+                    <StackPanel Orientation="Horizontal" Spacing="45">
+                        <StackPanel Spacing="8" Width="200">
+                            <TextBlock Text="Количество:" FontSize="13"/>
+                            <NumericUpDown Value="10" Minimum="0" Maximum="100" Increment="1"/>
+                        </StackPanel>
+                        <StackPanel Spacing="8" Width="200">
+                            <TextBlock Text="Дата:" FontSize="13"/>
+                            <DatePicker/>
+                        </StackPanel>
+                        <StackPanel Spacing="8" Width="200" Margin="100,0,0,0">
+                            <TextBlock Text="Время:" FontSize="13"/>
+                            <TimePicker/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="6. TabControl (Вкладки)"/>
+                    <TabControl Height="150">
+                        <TabItem Header="Главная">
+                            <StackPanel Margin="15">
+                                <TextBlock Text="Это содержимое первой вкладки" FontSize="14"/>
+                                <TextBlock Text="Здесь может быть любой контент" FontSize="13" Foreground="#636E72" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Настройки">
+                            <StackPanel Margin="15">
+                                <TextBlock Text="Настройки приложения" FontSize="14"/>
+                                <CheckBox Content="Включить уведомления" IsChecked="True" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="О программе">
+                            <StackPanel Margin="15">
+                                <TextBlock Text="Версия 1.0.0" FontSize="14"/>
+                                <TextBlock Text="© 2026 Avalonia Demo" FontSize="13" Foreground="#636E72" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="7. Expander (Раскрывающийся блок)"/>
+                    <StackPanel Spacing="10">
+                        <Expander Classes="styled-expander" Header="Что такое Avalonia UI?" IsExpanded="True">
+                            <StackPanel Margin="0,10,0,0">
+                                <TextBlock Text="Avalonia UI — это кроссплатформенный фреймворк для создания приложений на .NET." TextWrapping="Wrap"/>
+                                <TextBlock Text="Поддерживает Windows, macOS, Linux, iOS, Android и WebAssembly." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#636E72"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Classes="styled-expander" Header="Какие преимущества?">
+                            <StackPanel Margin="0,10,0,0">
+                                <TextBlock Text="• Один код для всех платформ" TextWrapping="Wrap"/>
+                                <TextBlock Text="• XAML-разметка как в WPF" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                <TextBlock Text="• CSS-подобная стилизация" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                <TextBlock Text="• Богатая библиотека контролов" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Classes="styled-expander" Header="Где использовать?">
+                            <StackPanel Margin="0,10,0,0">
+                                <TextBlock Text="Avalonia подходит для десктопных приложений, мобильных приложений и даже веб-приложений через WebAssembly." TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="8. ListBox (Список)"/>
+                    <ListBox Height="150" BorderBrush="#DFE6E9" BorderThickness="1" CornerRadius="6">
+                        <ListBoxItem Content="📄 Документ 1"/>
+                        <ListBoxItem Content="📄 Документ 2"/>
+                        <ListBoxItem Content="📄 Документ 3"/>
+                        <ListBoxItem Content="📁 Папка 1"/>
+                        <ListBoxItem Content="📁 Папка 2"/>
+                        <ListBoxItem Content="⚙️ Настройки"/>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Classes="section-title" Text="9. Плавная кнопка"/>
+                    <Button Classes="smooth-btn" Content="Наведи на меня!" HorizontalAlignment="Center" Width="220"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
