@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -277,6 +277,29 @@
                 </StackPanel>
             </Border>
 
+            <Border Classes="card">
+                <StackPanel Spacing="15">
+                    <TextBlock Classes="section-title" Text="10. ToggleSwitch (Переключатель)"/>
+                    
+                    <StackPanel Spacing="12">
+                        <ToggleSwitch Content="Стандартный переключатель" IsChecked="True"/>
+                        
+                        <ToggleSwitch 
+                            Content="Wi-Fi" 
+                            IsChecked="False" 
+                            OnContent="Подключено" 
+                            OffContent="Отключено"/>
+                        
+                        <ToggleSwitch 
+                            Classes="green-switch" 
+                            Content="Кастомный зеленый стиль" 
+                            IsChecked="True"/>
+                            
+                        <ToggleSwitch Content="Заблокированный переключатель" IsChecked="True" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
         </StackPanel>
     </ScrollViewer>
-</Window>
+</UserControl>
