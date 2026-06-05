@@ -20,7 +20,8 @@
                     <Border Name="btnBorder"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Padding="{TemplateBinding Padding}">
+                            Padding="{TemplateBinding Padding}"
+                            Cursor="Hand">
                         
                         <ContentPresenter Name="contentPresenter"
                                           Content="{TemplateBinding Content}"
@@ -90,6 +91,18 @@
             <Setter Property="CornerRadius" Value="6"/>
             <Setter Property="Padding" Value="12,8"/>
             <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style Selector="ComboBox.styled-combo /template/ Border">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="ComboBox.styled-combo:focus /template/ Border">
+            <Setter Property="BorderBrush" Value="Red"/>
         </Style>
 
         <Style Selector="Slider.styled-slider">
