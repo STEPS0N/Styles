@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -70,6 +70,9 @@
             <Setter Property="CornerRadius" Value="6"/>
             <Setter Property="Padding" Value="12,8"/>
             <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style Selector="TextBox.styled-input /template/ Border#PART_BorderElement">
             <Setter Property="Transitions">
                 <Transitions>
                     <BrushTransition Property="BorderBrush" Duration="0:0:0.2"/>
@@ -77,8 +80,8 @@
             </Setter>
         </Style>
 
-        <Style Selector="TextBox.styled-input:focus">
-            <Setter Property="BorderBrush" Value="#0078D7"/>
+        <Style Selector="TextBox.styled-input:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="Red"/>
         </Style>
 
         <Style Selector="ComboBox.styled-combo">
@@ -302,4 +305,4 @@
 
         </StackPanel>
     </ScrollViewer>
-</UserControl>
+</Window>
